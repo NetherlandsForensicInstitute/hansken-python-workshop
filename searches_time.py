@@ -15,16 +15,19 @@ from hansken.connect import connect_project
 from hansken.query import RangeFacet
 
 # The line below finds out if we run in the browser by checking for the js module
-in_browser = 'js' in sys.modules
-hansken_host = ''
-context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
-                          project='5ee273fd-0978-4a0a-b8b0-2af2f8479214',
-                          keystore=f'http://{hansken_host}:9091/keystore/',
-                          # Authentication is faked if we run in the browser,
-                          # because an authenticated session should already be present
-                          auth=SimpleNamespace() if in_browser else None,
-                          interactive=True)
+# in_browser = 'js' in sys.modules
+# hansken_host = ''
+# context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
+#                           project='5ee273fd-0978-4a0a-b8b0-2af2f8479214',
+#                           keystore=f'http://{hansken_host}:9091/keystore/',
+#                           # Authentication is faked if we run in the browser,
+#                           # because an authenticated session should already be present
+#                           auth=SimpleNamespace() if in_browser else None,
+#                           interactive=True)
 
+context = connect_project(endpoint='http://localhost:9091/gatekeeper/',
+                          project='d42bd9c3-63db-474c-a36f-b87e1eb9e2d3',
+                          keystore='http://localhost:9090/keystore/')
 # %% [markdown]
 ### Aggregate browser history data
 # The cell below retrieves the browser activity from Hansken. We use a `Facet` to count the number of traces where the `accessedOn` property is within a specific day.
@@ -52,3 +55,5 @@ ax.set_xlabel("day")
 ax.set_ylabel("count")
 ax.set_title('')
 pyplot.show()
+
+# %%
