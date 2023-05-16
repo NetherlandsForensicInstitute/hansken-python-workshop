@@ -39,7 +39,8 @@ context = connect_project(endpoint='http://localhost:9091/gatekeeper/',
 
 start = '2022-7-1T00:00Z'
 end = '2022-7-31T23:59Z'
-search_query = "type:chatMessage"
+#search_query = "type:chatMessage"
+search_query = "type:browserHistory"
 
 # Group the number of searches by the accessedOn property on a scale of a day. A Facet on a date requires a min and max
 facet = RangeFacet('dates', scale='hour', min=start, max=end)
@@ -60,3 +61,5 @@ df_map = pd.pivot_table( df, fill_value=0.0, columns=df.index.date, index=df.ind
 
 sns.heatmap(df_map, cmap="Greens",norm=LogNorm())
 
+
+# %%
