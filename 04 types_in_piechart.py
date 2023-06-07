@@ -12,7 +12,7 @@ from hansken.query import TermFacet
 
 # The line below finds out if we run in the browser by checking for the js module
 in_browser = 'js' in sys.modules
-hansken_host = '3.127.23.159'
+hansken_host = ''
 context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
                           project='5ee273fd-0978-4a0a-b8b0-2af2f8479214',
                           keystore=f'http://{hansken_host}:9091/keystore/',
