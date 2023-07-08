@@ -5,7 +5,9 @@
 ## Run script
 * Open folder containing scripts
 * Confirm that you trust the author so the scripts can be run
-* Install Python extension if Code asks
+* Install Visual Studio Code extensions:
+  * Python
+  * Jupyter
 * Create virtual environment (Ctrl+Shift+P Python: Create Environment)
 * Open terminal to install dependencies (Ctrl+Shift+P Terminal: Create New Terminal)
     * Windows: if an error regarding about Execution Policies occurs, change default terminal to Command Prompt instead of PowerShell: File -> Preferences -> Settings -> Features -> Terminal -> Integrated -> Default Profile: Windows -> Select `Command Prompt`
