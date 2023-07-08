@@ -35,10 +35,11 @@ context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
 # Group the number of searches by the accessedOn property on a scale of a day. A Facet on a date requires a min and max
 facet = RangeFacet('browserHistory.accessedOn', scale='day', min="2022-01-01", max="2023-01-01")
 # Perform search using the facet, set count=0 to prevent hansken returning traces
-with context.search("browserHistory.accessedOn=2022", facets=facet, count=0) as searchResult:
-  # Convert to dataframe
-  dateFacetResult = searchResult.facets[0]
-  df = pd.DataFrame([[counter.value, counter.count] for _, counter in searchResult.facets[0].items()], columns=['Day', 'Count'])
+with context.search("browserHistory.accessedOn=2022", facets=facet, count=0) as search_result:
+    # Convert to dataframe
+    dateFacetResult = search_result.facets[0]
+    df = pd.DataFrame([[counter.value, counter.count] for _, counter in search_result.facets[0].items()],
+                      columns=['Day', 'Count'])
 # make sure pandas knows this is a timestamp
 df['Day'] = pd.to_datetime(df['Day'])
 df

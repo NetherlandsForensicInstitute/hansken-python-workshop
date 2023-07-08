@@ -35,13 +35,13 @@ context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
 # %% [python]
 facet = TermFacet('type', size=40)
 # Perform search using the facet, set count=0 to prevent hansken returning traces
-with context.search("*", facets=facet, count=0) as searchResult:
+with context.search("*", facets=facet, count=0) as search_result:
     # ignore origin because it is a metatype and compressed to limit the total number of types
     ignoreable_types = {'origin', 'compressed'}
-    typeFacet = [bucket for bucket  in searchResult.facets[0].values() 
-                 if bucket.value not in ignoreable_types]
-    counts = [bucket.count for bucket in typeFacet]
-    names = [bucket.value for bucket in typeFacet]
+    type_facet = [bucket for bucket in search_result.facets[0].values()
+                  if bucket.value not in ignoreable_types]
+    counts = [bucket.count for bucket in type_facet]
+    names = [bucket.value for bucket in type_facet]
 
 fig = px.pie(values=counts, names=names, title=f'Trace types found in project')
 fig.show()
