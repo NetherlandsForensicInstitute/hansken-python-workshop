@@ -12,7 +12,7 @@ in_browser = 'js' in sys.modules
 hansken_host = ''
 context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
                           project='5ee273fd-0978-4a0a-b8b0-2af2f8479214',
-                          keystore=f'http://{hansken_host}:9091/keystore/',
+                          keystore=f'http://{hansken_host}:9090/keystore/',
                           # Authentication is faked if we run in the browser,
                           # because an authenticated session should already be present
                           auth=SimpleNamespace() if in_browser else None,
