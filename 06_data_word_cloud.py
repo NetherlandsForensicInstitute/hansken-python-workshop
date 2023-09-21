@@ -38,7 +38,7 @@ words = ""
 with context.search("type:document") as search_result:
     for trace in search_result:
         if "text" in trace.data_types:
-            with io.TextIOWrapper(trace.open(stream='text')) as content:
+            with io.TextIOWrapper(trace.open(stream='text'), encoding="utf-8") as content:
                 words += content.read()
 words
 
