@@ -1,15 +1,10 @@
 # %% [python]
 import io
-import sys
 from wordcloud import WordCloud, STOPWORDS
-from types import SimpleNamespace
 
 import matplotlib.pyplot as plt
 
 from hansken.connect import connect_project
-
-# setup hansken connection
-in_browser = 'js' in sys.modules
 
 hansken_host = ''
 hansken_project = '5ee273fd-0978-4a0a-b8b0-2af2f8479214'
@@ -17,9 +12,6 @@ hansken_project = '5ee273fd-0978-4a0a-b8b0-2af2f8479214'
 context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
                           project=hansken_project,
                           keystore=f'http://{hansken_host}:9090/keystore/',
-                          # Authentication is faked if we run in the browser,
-                          # because an authenticated session should already be present
-                          auth=SimpleNamespace() if in_browser else None,
                           interactive=True)
 
 # Hansken SDK running on localhost
@@ -37,8 +29,9 @@ context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
 words = ""
 with context.search("type:document") as search_result:
     for trace in search_result:
+        # verify text data stream is available
         if "text" in trace.data_types:
-            with io.TextIOWrapper(trace.open(stream='text'), encoding="utf-8") as content:
+            with io.TextIOWrapper(trace.open(stream='text'), encoding="utf-8", errors="ignore") as content:
                 words += content.read()
 words
 

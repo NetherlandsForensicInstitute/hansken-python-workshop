@@ -5,17 +5,12 @@
 # Replace `hansken_host` with the ip of a Hansken instance.
 
 # %% [python]
-import sys
 import pandas as pd
 
-from types import SimpleNamespace
 from matplotlib import pyplot
 
 from hansken.connect import connect_project
 from hansken.query import RangeFacet
-
-# The line below finds out if we run in the browser by checking for the js module
-in_browser = 'js' in sys.modules
 
 hansken_host = ''
 hansken_project = '5ee273fd-0978-4a0a-b8b0-2af2f8479214'
@@ -23,9 +18,6 @@ hansken_project = '5ee273fd-0978-4a0a-b8b0-2af2f8479214'
 context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
                           project=hansken_project,
                           keystore=f'http://{hansken_host}:9090/keystore/',
-                          # Authentication is faked if we run in the browser,
-                          # because an authenticated session should already be present
-                          auth=SimpleNamespace() if in_browser else None,
                           interactive=True)
 
 # context = connect_project(endpoint='http://localhost:9091/gatekeeper/',
