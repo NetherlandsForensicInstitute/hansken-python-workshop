@@ -13,7 +13,7 @@ from hansken.connect import connect_project
 from hansken.query import RangeFacet
 
 hansken_host = ''
-hansken_project = '5ee273fd-0978-4a0a-b8b0-2af2f8479214'
+hansken_project = '9f415f8c-c6d0-4341-bcdf-f86db5353471'
 
 context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
                           project=hansken_project,
