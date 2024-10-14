@@ -3,8 +3,8 @@ import pandas as pd
 from plotly import graph_objects as go
 
 # define our connection parameters
-hansken_host = 'hansken'
-hansken_project = 'd42bd9c3-63db-474c-a36f-b87e1eb9e2d3'
+hansken_host = ''
+hansken_project = '9f415f8c-c6d0-4341-bcdf-f86db5353471'
 # connect to the hansken instance at hansken_host
 context = connect_project(
     endpoint=f'http://{hansken_host}:9091/gatekeeper/',
@@ -38,7 +38,7 @@ def walk_tree(context, root, depth, root_label=None):
         yield from walk_tree(context, trace, depth=depth - 1)
 
 
-root_uid = '7b602a8b-f941-4f39-a2e4-0d0cfe8d2476:0-0'
+root_uid = '2244e605-b8cb-4f16-b237-720cdc247fae:0-0'
 max_depth = 3
 # retrieve the trace object with our root uid
 root_trace = context.trace(root_uid)
